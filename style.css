@@ -1,8 +1,39 @@
 body{
+    /* display: flex;
+    justify-content: center;
+    align-content: center; */
     background-color: pink;
+    
 }
 
-#map{
-    height: 700px;
-    width: 100%;
+h1{
+    width: 500px;
+    margin: auto;
+}
+
+grid{
+    margin: auto;
+    height: 50vh;
+    width: 80vw;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 15fr;
+}
+
+#map1{
+    grid-row: 3/4;
+    grid-column: 4/6;
+    /* height: 700px;
+    width: 40%; */
+}
+
+#map2{
+    grid-row: 3/4;
+    grid-column: 1/3;
+    /* height: 700px;
+    width: 40%; */
+}
+
+#searchBar{
+    grid-column: 1/5
 }
