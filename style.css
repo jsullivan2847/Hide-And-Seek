@@ -48,7 +48,19 @@ grid{
     grid-row: 3/4;
     grid-column:4/5;
 }
-
+#streetViewButtons{
+    display: flex;
+    justify-content: center;
+    grid-column: 1;
+}
 #newLocation{
+    width: 100px;
     margin: auto;
+   
+}
+#mapView{
+    width: 100px;
+    margin: auto;
+}
+label{
 }
