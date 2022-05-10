@@ -4,6 +4,7 @@ let markers = [];
 let answer = [];
 let randomLocations = [];
 //JQuery DOM element references
+const $results = $("#latlng");
 const $deleteButton = $("#deleteBtn");
 const $newLocationButton = $("#newLocation");
 const $mapView = $("#mapView");
@@ -12,7 +13,7 @@ const $streetView = $("#streetView")[0];
 const googleUrl =
   "https://maps.googleapis.com/maps/api/js?key=AIzaSyBrL26kHgHcE6O9YC-F7mbxCXhwscpSsdA&callback=initMap";
 
-  //API CALL.................................................
+//API CALL.................................................
 $.ajax({ url: googleUrl, dataType: "jsonp" }).then(function () {
   initMaps(brooklyn);
 });
@@ -75,11 +76,10 @@ function initMaps(location) {
   });
   addMarker(randomLocation, map0, "secret location", answer, false);
   //for some reason I can't get the variables out of this array item
+  //as of right now I'm needing to store them in a new one in order to get
+  //the coordinates to print out the way I want them to in the console log
   answerLocation = answer[0];
-  theAnswer = answerLocation.position
-  console.log("what im looking for", theAnswer)
-  console.log("secret location is ", answerLocation.toString());
-  //console.log('marker',map0.center)
+  theAnswer = answerLocation.getPosition().toString();
 
   //instantiates streetview settings
   const streetView = new google.maps.StreetViewPanorama($streetView, {
@@ -92,11 +92,10 @@ function initMaps(location) {
   // sets the map to streetview
   map0.getStreetView(streetView);
 
-  //Change Map View
+  //Change Map View BUTTON
   $mapView.change(function () {
     if (this.checked) {
       streetView.setVisible(false);
-      //console.log(streetView.setVisible())
     } else if (!this.checked) {
       streetView.setVisible(true);
     }
@@ -108,15 +107,22 @@ function initMaps(location) {
     center: map0.center,
     zoom: 12,
   });
-  //adds a listener to the map for creating markers
+  //adds a listener to the map for user creating markers
   map1.addListener("click", function (e) {
+    //deletes marker every time you make a new one - only 1 answer
     deleteMarker();
+    //adds your marker
     addMarker(e.latLng, map1, "Your Answer", markers, true);
-    console.log("answers array is at ", answer.length);
-    console.log("markers array is at ", markers.length);
-    let yourAnswer = markers[0].position.toString();
-    console.log("answer location: ", answerLocation.toString() )
-    console.log("your answer is ", parseInt(yourAnswer));
+    //adds marker identical to streetview location to your map
+    addMarker(randomLocation, map1, "secret location", answer, false);
+    //turns your marker into an object literal containing your latlng 
+    //coordinates and turns those to a string to display them 
+    //(I don't know why its the only way)
+    const userChoice = markers[0].getPosition().toString();
+    convertStrings(userChoice);
+    console.log(points);
+    //displays results * 69.2 the amount of miles between latitude coordinates
+    displayResults(points * 69.2);
   });
 }
 
@@ -124,19 +130,57 @@ function initMaps(location) {
 //marker is made, deleteMarker() is called, emptying the array
 //making it so you can only have 1 at a time
 function addMarker(latLng, map, title, array, draggableChoice) {
-  marker = new google.maps.Marker({
+  const marker = new google.maps.Marker({
     position: latLng,
     map: map,
     draggable: draggableChoice,
     title: `${title}`,
   });
-  array.push(marker);
-  marker.setMap(map);
+  if (marker != undefined) {
+    array.push(marker);
+    marker.setMap(map);
+  }
 }
 
 function deleteMarker() {
-  markers.forEach(function(marker){
-    marker.setMap(null)
+  markers.forEach(function (marker) {
+    marker.setMap(null);
   });
   markers = [];
+}
+
+//turns your latlng coordinates in string form to number.
+//combines them, and then returns the difference. If the amount is negative,
+//it turns it positive
+const convertStrings = function (userChoice) {
+  const comma = ",";
+  const userLatLng = userChoice.split(comma);
+  const answerLatLng = theAnswer.split(comma);
+  const userNums = userLatLng.map(function (string) {
+    return Number(string.replace("(", "").replace(")", ""));
+  });
+
+  const answerNums = answerLatLng.map(function (string) {
+    return Number(string.replace("(", "").replace(")", ""));
+  });
+
+  const userFinal = userNums.reduce(function (lat, lng) {
+    return lat + lng;
+  });
+
+  const answerFinal = answerNums.reduce(function (lat, lng) {
+    return lat + lng;
+  });
+
+  let total = answerFinal - userFinal;
+  if (total < 0) {
+    total = total * -1;
+  }
+  return (points = total.toFixed(6) * 1);
+};
+
+function displayResults(distance) {
+  $results.text(
+    `Your guess was ${distance.toFixed(4)} miles away from the answer`
+  );
 }

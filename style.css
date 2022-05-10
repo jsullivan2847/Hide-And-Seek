@@ -62,5 +62,27 @@ grid{
     width: 100px;
     margin: auto;
 }
-label{
+#mapControls{
+    grid-column: 3;
+    grid-row: 2;
+    display: flex;
+    justify-content: flex-start;
+}
+#deleteBtn{
+    height: 25px;
+}
+#results{
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+    grid-row: 3;
+    justify-content: flex-start;
+}
+#resultsText{
+    margin:0 10px 0 10px;
+    font-size: 20px;
+}
+
+#latlng{
+    margin: 70px 10px 10px 10px
 }
