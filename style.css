@@ -47,7 +47,8 @@ grid{
 }
 
 #options{
-    background-color: blue;
+    margin-left: 8px;
+    background-color: rgb(119, 119, 247);
     grid-row: 3/4;
     grid-column:4/5;
 }
