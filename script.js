@@ -1,9 +1,14 @@
 //VARIABLES................................................
+const flag = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 //storing answers and locations
 let markers = [];
 let answer = [];
 let randomLocations = [];
+const allScores = []
 //JQuery DOM element references
+const $score = $('#score');
+const $tryAgainButton = $('<button id="newLocation"></button>').text('Try Again?')
+const $resultsDiv = $('#results')
 const $results = $("#latlng");
 const $deleteButton = $("#deleteBtn");
 const $newLocationButton = $("#newLocation");
@@ -21,28 +26,9 @@ $.ajax({ url: googleUrl, dataType: "jsonp" }).then(function () {
 //BUTTONS..................................................
 //Delete Marker
 $deleteButton.on("click", function () {
-  deleteMarker(marker);
+  deleteMarker();
 });
-//New Location
-$newLocationButton.on("click", function () {
-  getRandomLocation();
-  const map0 = new google.maps.Map($streetView, {
-    center: randomLocation,
-    zoom: 12,
-    disableDefaultUI: true,
-    zoomControl: false,
-  });
-  const streetView = new google.maps.StreetViewPanorama($streetView, {
-    position: randomLocation,
-    pov: {
-      heading: 34,
-      pitch: 10,
-    },
-  });
-  map0.getStreetView(streetView);
-  addMarker(randomLocation, map0);
-  console.log(randomLocation);
-});
+createButton();
 
 //Testing Locations
 //longitude and latitude range from
@@ -66,24 +52,24 @@ function getRandomLocation() {
 function initMaps(location) {
   //MAP 1......STREET VIEW................................
   getRandomLocation();
-
   //map instantiation passing in DOM location and the actual *location*
   const map0 = new google.maps.Map($streetView, {
-    center: randomLocation,
+    center: randomLocations[0],
     zoom: 12,
     disableDefaultUI: true,
     zoomControl: false,
   });
-  addMarker(randomLocation, map0, "secret location", answer, false);
+  addMarker(randomLocations[0], map0, "secret location", answer, false);
   //for some reason I can't get the variables out of this array item
   //as of right now I'm needing to store them in a new one in order to get
-  //the coordinates to print out the way I want them to in the console log
+  //the coordinates to print out the way I want them to 
   answerLocation = answer[0];
   theAnswer = answerLocation.getPosition().toString();
+  //console.log(theAnswer)
 
   //instantiates streetview settings
   const streetView = new google.maps.StreetViewPanorama($streetView, {
-    position: randomLocation,
+    position: randomLocations[0],
     pov: {
       heading: 34,
       pitch: 10,
@@ -93,13 +79,13 @@ function initMaps(location) {
   map0.getStreetView(streetView);
 
   //Change Map View BUTTON
-  $mapView.change(function () {
-    if (this.checked) {
-      streetView.setVisible(false);
-    } else if (!this.checked) {
-      streetView.setVisible(true);
-    }
-  });
+  // $mapView.change(function () {
+  //   if (this.checked) {
+  //     streetView.setVisible(false);
+  //   } else if (!this.checked) {
+  //     streetView.setVisible(true);
+  //   }
+  // });
 
   //MAP 2...............................................
   //instantiate map on the right
@@ -112,15 +98,15 @@ function initMaps(location) {
     //deletes marker every time you make a new one - only 1 answer
     deleteMarker();
     //adds your marker
-    addMarker(e.latLng, map1, "Your Answer", markers, true);
+    let answerReveal = addMarker(e.latLng, map1, "Your Answer", markers, true);
     //adds marker identical to streetview location to your map
-    addMarker(randomLocation, map1, "secret location", answer, false);
+    let yourMarker = addMarker(randomLocations[0], map1, "secret location", answer, false, flag);
     //turns your marker into an object literal containing your latlng 
     //coordinates and turns those to a string to display them 
     //(I don't know why its the only way)
     const userChoice = markers[0].getPosition().toString();
     convertStrings(userChoice);
-    console.log(points);
+    //console.log(points);
     //displays results * 69.2 the amount of miles between latitude coordinates
     displayResults(points * 69.2);
   });
@@ -129,12 +115,13 @@ function initMaps(location) {
 //adding each new marker to an array, and then each time a new
 //marker is made, deleteMarker() is called, emptying the array
 //making it so you can only have 1 at a time
-function addMarker(latLng, map, title, array, draggableChoice) {
-  const marker = new google.maps.Marker({
+function addMarker(latLng, map, title, array, draggableChoice, icon) {
+  let marker = new google.maps.Marker({
     position: latLng,
     map: map,
     draggable: draggableChoice,
     title: `${title}`,
+    icon: icon
   });
   if (marker != undefined) {
     array.push(marker);
@@ -183,4 +170,43 @@ function displayResults(distance) {
   $results.text(
     `Your guess was ${distance.toFixed(4)} miles away from the answer`
   );
+  let finalScore = 0;
+  allScores.unshift(distance);
+  allScores.forEach(function(score){
+    finalScore += score;
+  })
+  //console.log(finalScore);
+  $score.text(`${finalScore.toFixed(4)}`)
+  createButton();
+  
 }
+function createButton(){
+//New Location
+$resultsDiv.append($tryAgainButton);
+$tryAgainButton.on("click", function () {
+  // let answer = [];
+  // getRandomLocation();
+  // const map0 = new google.maps.Map($streetView, {
+  //   center: randomLocations[0],
+  //   zoom: 12,
+  //   disableDefaultUI: true,
+  //   zoomControl: false,
+  // });
+  // const streetView = new google.maps.StreetViewPanorama($streetView, {
+  //   position: randomLocations[0],
+  //   pov: {
+  //     heading: 34,
+  //     pitch: 10,
+  //   },
+  // });
+  // map0.getStreetView(streetView);
+  // addMarker(randomLocations[0], map1, "secret location", answer, false, flag);
+  // answerLocation = answer[0];
+  // theAnswer = answerLocation.getPosition().toString();
+  // console.log(theAnswer)
+  // deleteMarker();
+  initMaps();
+});
+
+}
+

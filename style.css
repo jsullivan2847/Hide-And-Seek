@@ -53,11 +53,7 @@ grid{
     justify-content: center;
     grid-column: 1;
 }
-#newLocation{
-    width: 100px;
-    margin: auto;
-   
-}
+
 #mapView{
     width: 100px;
     margin: auto;
@@ -66,7 +62,15 @@ grid{
     grid-column: 3;
     grid-row: 2;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+
+}
+#score{
+    font-size: 20px;
+}
+#yourScore{
+    font-size: 20px;
 }
 #deleteBtn{
     height: 25px;
@@ -84,5 +88,28 @@ grid{
 }
 
 #latlng{
+    /* border-width: 3px;
+    border-style: solid; */
+    padding: 2px;
     margin: 70px 10px 10px 10px
 }
+#newLocation{
+
+    width: 70px;
+    margin: auto;
+   
+}
+#roundCount{
+    font-size: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 2/3;
+    background-color: red;
+}
+#count{
+}
+/* @media only screen and (max-width: 500px) {
+    #deleteBtn{}
+} */
