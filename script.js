@@ -1,4 +1,3 @@
-//VARIABLES................................................
 const flag = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 //storing answers and locations
 let markers = [];
@@ -7,7 +6,7 @@ let randomLocations = [];
 const allScores = []
 //JQuery DOM element references
 const $score = $('#score');
-const $tryAgainButton = $('<button id="newLocation"></button>').text('Try Again?')
+const $tryAgainButton = $('<button class="buttons" id="newLocation"></button>').text('Try Again?')
 const $resultsDiv = $('#results')
 const $results = $("#latlng");
 const $deleteButton = $("#deleteBtn");
