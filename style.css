@@ -50,6 +50,31 @@ grid{
     background-color: rgb(156,192,249);
     grid-row: 3/4;
     grid-column:4/5;
+    justify-content: center;
+}
+.dropdown-content{
+    display: none;
+    text-align: center;
+    background-color: rgb(123, 171, 248);
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content p:hover {
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+#cityChange{
+    width: 50px;
+    margin-top: 5px;
+    margin-left: 7px;
+    border: none;
+}
+.cityLinks:hover{
+    background-color: rgb(97, 137, 200);
+    color: aliceblue;
+}
+#city:hover .dropdown-content {
+    display: block;
 }
 #streetViewButtons{
     display: flex;
@@ -120,12 +145,20 @@ grid{
     border-radius: 30px;
 }
 .buttons{
+    /* height: 40px; */
     font-family: 'Montserrat Alternates', sans-serif;
 }
 #newLocation{
     width: 50px;
     margin-right: 10px;
-    margin-left: 10px
+    margin-left: 10px;
+}
+.links{
+    margin: 4px 4px 4px 4px;
+    border: none;
+}
+#mapContainer{
+    background-color: rgba(red, green, rgba(0, 0, 255, 0), 0);
 }
 @media only screen and (max-width: 590px) {
     #deleteBtn{
@@ -138,5 +171,52 @@ grid{
     }
     #yourScore{
         display: none;
+    }
+}
+@media only screen and (max-width: 425px) {
+    #mapControls{
+        justify-content: space-around;
+    }
+    #yourScore{
+        display: none;
+    }
+    grid{
+        display: block;
+    }
+    #streetView{
+       height: 50vh;
+    }
+    #map1{
+        height: 20vh;
+    }
+    h1{
+        display: none;
+    }
+    #newLocation{
+        padding: 2px;
+        width: 70px;
+       
+    }
+    #mapControls{
+        height: 20px;
+        margin-bottom: 2px;
+    }
+    #roundCount{
+        height: 20px;
+        font-size: 20px;
+        margin-bottom: 2px;
+    }
+    #newLocation{
+        margin-right: 10px;
+        margin-bottom: 5px;
+        height: 20px;
+        width:90vw;
+        border-radius: 10px;
+        border-width: 0;
+        font-size: 17px;
+        background-color: rgb(206,234,214);
+    }
+    #newLocation:hover{
+        background-color: rgb(50, 64, 54);
     }
 }

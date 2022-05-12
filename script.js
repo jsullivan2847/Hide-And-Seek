@@ -5,11 +5,13 @@ let answer = [];
 let randomLocations = [];
 const allScores = [];
 localStorage.setItem('clicks', 0);
-
+let currentCity = null;
 let currentRound = 1;
 const $count = $('#count');
 $count.text(`${currentRound}`);
 //JQuery DOM element references
+const $newYorkButton = $('#newYork');
+const $grButton = $('#grandRapids');
 const $score = $('#score');
 const $roundCount = $('#roundCount');
 const $tryAgainButton = $('<button class="buttons" id="newLocation"></button>').text('Try Again')
@@ -24,11 +26,30 @@ const googleUrl =
 
 //API CALL.................................................
 $.ajax({ url: googleUrl, dataType: "jsonp" }).then(function () {
-  initMaps(brooklyn);
+  initMaps(newYork);
 });
 
-// $('#streetView').hide().fadeIn(3000);
-// $("#map1").hide().fadeIn(3000);
+//Testing Locations
+//longitude and latitude range from
+//-90 to 90 Lat
+//-180 to 180 long
+const brooklyn = { lat: 40.650002, lng: -73.949997 };
+const gr = { lat: [43, 42.94], lng: [-85.68, -85.61] };
+const timesSquare = { lat: 40.758, lng: -73.9855 };
+const newYork = {lat: [40.77, 40.61], lng: [-74, -73.89]};
+function getRandomLocation(city) {
+  //Right now it's set up to only give you locations in
+  //Brooklyn Queens and Manhattan
+  randomLocations = [];
+  let randomLat = (Math.random() * (city.lat[0] - city.lat[1]) + city.lat[1]).toFixed(6) * 1;
+  let randomLong = (Math.random() * (city.lng[0] - city.lng[1]) + city.lng[1]).toFixed(6) * 1;
+  
+  //newyork below
+  // let randomLat = (Math.random() * (40.75 - 40.59) + 40.59).toFixed(6) * 1;
+  // let randomLong = (Math.random() * (-74 - -73.89) + -73.89).toFixed(6) * 1;
+  randomLocation = { lat: randomLat, lng: randomLong };
+  randomLocations.push(randomLocation);
+}
 
 //BUTTONS..................................................
 //Delete Marker
@@ -37,28 +58,22 @@ $deleteButton.on("click", function () {
 });
 createButton();
 
-//Testing Locations
-//longitude and latitude range from
-//-90 to 90 Lat
-//-180 to 180 long
-const brooklyn = { lat: 40.650002, lng: -73.949997 };
-const gr = { lat: 42.963795, lng: -85.670006 };
-const timesSquare = { lat: 40.758, lng: -73.9855 };
+//CITY CHANGE BUTTONS...................................
+$newYorkButton.on('click',function(){
+  initMaps(newYork);
+})
 
-function getRandomLocation() {
-  //Right now it's set up to only give you locations in
-  //Brooklyn Queens and Manhattan
-  randomLocations = [];
-  let randomLat = (Math.random() * (40.75 - 40.59) + 40.59).toFixed(6) * 1;
-  let randomLong = (Math.random() * (-74 - -73.89) + -73.89).toFixed(6) * 1;
-  randomLocation = { lat: randomLat, lng: randomLong };
-  randomLocations.push(randomLocation);
-}
+$grButton.on('click', function(){
+  initMaps(gr);
+});
+
+
 
 //parameters for map are coordinates (in the form of an object)
 function initMaps(location) {
   //MAP 1......STREET VIEW................................
-  getRandomLocation();
+  getRandomLocation(location);
+  currentCity = location;
   $('#streetView').hide().fadeIn(1800);
   $("#map1").hide().fadeIn(2500);
   //map instantiation passing in DOM location and the actual *location*
@@ -199,9 +214,9 @@ function createButton(){
 $resultsDiv.append($tryAgainButton);
 $tryAgainButton.on("click", function () {
    answer = [];
-  initMaps();
+  initMaps(currentCity);
   $count.text(`${currentRound += 1}`);
-  $('#latlng').fadeOut(1000);
+  $('#latlng').fadeOut(700);
   localStorage.clicks++;
   console.log(localStorage.clicks);
 });
