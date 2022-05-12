@@ -3,15 +3,20 @@ const flag = "https://developers.google.com/maps/documentation/javascript/exampl
 let markers = [];
 let answer = [];
 let randomLocations = [];
-const allScores = []
+const allScores = [];
+localStorage.setItem('clicks', 0);
+
+let currentRound = 1;
+const $count = $('#count');
+$count.text(`${currentRound}`);
 //JQuery DOM element references
 const $score = $('#score');
-const $tryAgainButton = $('<button class="buttons" id="newLocation"></button>').text('Try Again?')
-const $resultsDiv = $('#results')
+const $roundCount = $('#roundCount');
+const $tryAgainButton = $('<button class="buttons" id="newLocation"></button>').text('Try Again')
+const $resultsDiv = $('#results');
 const $results = $("#latlng");
 const $deleteButton = $("#deleteBtn");
 const $newLocationButton = $("#newLocation");
-const $mapView = $("#mapView");
 const $mapBox1 = $("#map1")[0];
 const $streetView = $("#streetView")[0];
 const googleUrl =
@@ -21,6 +26,9 @@ const googleUrl =
 $.ajax({ url: googleUrl, dataType: "jsonp" }).then(function () {
   initMaps(brooklyn);
 });
+
+// $('#streetView').hide().fadeIn(3000);
+// $("#map1").hide().fadeIn(3000);
 
 //BUTTONS..................................................
 //Delete Marker
@@ -51,6 +59,8 @@ function getRandomLocation() {
 function initMaps(location) {
   //MAP 1......STREET VIEW................................
   getRandomLocation();
+  $('#streetView').hide().fadeIn(1800);
+  $("#map1").hide().fadeIn(2500);
   //map instantiation passing in DOM location and the actual *location*
   const map0 = new google.maps.Map($streetView, {
     center: randomLocations[0],
@@ -58,6 +68,7 @@ function initMaps(location) {
     disableDefaultUI: true,
     zoomControl: false,
   });
+  
   addMarker(randomLocations[0], map0, "secret location", answer, false);
   //for some reason I can't get the variables out of this array item
   //as of right now I'm needing to store them in a new one in order to get
@@ -169,6 +180,7 @@ function displayResults(distance) {
   $results.text(
     `Your guess was ${distance.toFixed(4)} miles away from the answer`
   );
+  $results.css('display', 'flex')
   let finalScore = 0;
   allScores.unshift(distance);
   allScores.forEach(function(score){
@@ -176,36 +188,24 @@ function displayResults(distance) {
   })
   //console.log(finalScore);
   $score.text(`${finalScore.toFixed(4)}`)
-  createButton();
+  //createButton();
   
 }
+
+
 function createButton(){
 //New Location
+
 $resultsDiv.append($tryAgainButton);
 $tryAgainButton.on("click", function () {
-  // let answer = [];
-  // getRandomLocation();
-  // const map0 = new google.maps.Map($streetView, {
-  //   center: randomLocations[0],
-  //   zoom: 12,
-  //   disableDefaultUI: true,
-  //   zoomControl: false,
-  // });
-  // const streetView = new google.maps.StreetViewPanorama($streetView, {
-  //   position: randomLocations[0],
-  //   pov: {
-  //     heading: 34,
-  //     pitch: 10,
-  //   },
-  // });
-  // map0.getStreetView(streetView);
-  // addMarker(randomLocations[0], map1, "secret location", answer, false, flag);
-  // answerLocation = answer[0];
-  // theAnswer = answerLocation.getPosition().toString();
-  // console.log(theAnswer)
-  // deleteMarker();
+   answer = [];
   initMaps();
+  $count.text(`${currentRound += 1}`);
+  $('#latlng').fadeOut(1000);
+  localStorage.clicks++;
+  console.log(localStorage.clicks);
 });
 
 }
+
 
