@@ -1,244 +1,251 @@
-body{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center; 
-    background-color: rgb(213, 213, 213);
-    font-family: 'Montserrat Alternates', sans-serif;
-    
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  background-color: rgb(213, 213, 213);
+  font-family: "Montserrat Alternates", sans-serif;
 }
 
-h1{font-family: 'Montserrat Alternates', sans-serif;
-    font-weight: 300;
-    width: 500px;
-    margin: auto;
+h1 {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 300;
+  width: 500px;
+  margin: auto;
 }
 
-grid{
-    margin: auto;
-    height: 90vh;
-    width: 97vw;
-    display: grid;
-    grid-template-columns: 8fr 1fr 5fr 1fr;
-    grid-template-rows: 10px 1fr 15fr;
-    background-color: rgb(242,243,244);
-    padding: 5px;
-    border-radius: 5px;
+grid {
+  margin: auto;
+  height: 90vh;
+  width: 97vw;
+  display: grid;
+  grid-template-columns: 8fr 1fr 5fr 1fr;
+  grid-template-rows: 10px 1fr 15fr;
+  background-color: rgb(242, 243, 244);
+  padding: 5px;
+  border-radius: 5px;
 }
-.maps{
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 5px;
-    
+.maps {
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
 }
-#map1{
-    grid-row: 3/4;
-    grid-column: 3/4;
-    
+#map1 {
+  grid-row: 3/4;
+  grid-column: 3/4;
 }
 
-#streetView{
-    grid-row: 3/4;
-    grid-column: 1/2;
-    border-radius: 5px;
-    
+#streetView {
+  grid-row: 3/4;
+  grid-column: 1/2;
+  border-radius: 5px;
 }
 
-#options{
-    margin-left: 5px;
-    margin-right: 5px;
-    background-color: rgb(156,192,249);
-    grid-row: 3/4;
-    grid-column:4/5;
-    justify-content: center;
+#options {
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: rgb(156, 192, 249);
+  grid-row: 3/4;
+  grid-column: 4/5;
+  justify-content: center;
 }
-.dropdown-content{
-    display: none;
-    text-align: center;
-    background-color: rgb(123, 171, 248);
-    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.2);
-    z-index: 1;
+#city {
+  margin-top: 5px;
+  margin-left: 7px;
+}
+.dropdown-content {
+  display: none;
+  text-align: center;
+  background-color: rgb(123, 171, 248);
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 .dropdown-content p:hover {
-    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.2);
-    z-index: 1;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
-.cityLinks{
-    margin: 2px 4px 2px 4px;
+.links {
+  background-color: rgb(240, 233, 233);
+  margin: 2px 4px 2px 4px;
+  color: rgb(58, 97, 160);
+  font-family: "Montserrat Alternates", sans-serif;
+  border-radius: 3px;
 }
-#cityChange{
-    width: 50px;
-    margin-top: 5px;
-    margin-left: 7px;
-    margin-right: 7px;
-    border: none;
-    border-radius: 4px;
+.dropdown-buttons {
+  width: fit-content;
+  margin-top: 5px;
+  margin-left: 7px;
+  margin-right: 7px;
+  border: none;
+  border-radius: 4px;
+  font-family: "Montserrat Alternates", sans-serif;
 }
-.cityLinks:hover{
-    background-color: rgb(83, 112, 158);
-    color: aliceblue;
-    border-radius: 4px;
+.links:hover {
+  background-color: rgb(83, 112, 158);
+  color: aliceblue;
+  border-radius: 4px;
 }
-#city:hover .dropdown-content {
-    display: block;
+.dropdown-container:hover .dropdown-content {
+  display: block;
 }
-#streetViewButtons{
-    display: flex;
-    justify-content: center;
-    grid-column: 1;
+#streetViewButtons {
+  display: flex;
+  justify-content: center;
+  grid-column: 1;
 }
-#mapControls{
-    background-color: rgb(253,226,147);
-    grid-column: 3/5;
-    grid-row: 2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
-    height: 50px;
-    border-radius: 30px;
+#mapControls {
+  background-color: rgb(253, 226, 147);
+  grid-column: 3/5;
+  grid-row: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+  height: 50px;
+  border-radius: 30px;
 }
-#score{
-    font-size: 20px;
-    font-weight: 600;
-    margin-right: 20px;
+#score {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 20px;
 }
-#yourScore{
-    font-size: 20px;
+#yourScore {
+  font-size: 20px;
 }
-#deleteBtn{
-    height: 25px;
+#deleteBtn {
+  height: 25px;
 }
-#results{
-    display: flex;
-    flex-direction: column;
-    grid-column: 2;
-    grid-row: 3;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0);
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 4px;
+#results {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  grid-row: 3;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0);
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 4px;
 }
-#resultsText{
-    margin:0 10px 0 10px;
-    font-size: 20px;
+#resultsText {
+  margin: 0 10px 0 10px;
+  font-size: 20px;
 }
 
-#latlng{
-    display: none;
-    padding: 4px;
-    margin: 70px 10px 10px 10px;
-    background-color: rgb(206,234,214);
-    border-radius: 3px;
+#latlng {
+  display: none;
+  padding: 4px;
+  margin: 70px 10px 10px 10px;
+  background-color: rgb(206, 234, 214);
+  border-radius: 3px;
 }
-#newLocation{
-    padding: 2px;
-    width: 70px;
-   
+#newLocation {
+  padding: 2px;
+  width: 70px;
 }
-#roundCount{
-    font-size: 30px;
-    align-items: center;
-    display: flex;
-    justify-content: space-evenly;
-    grid-column: 1 / 2;
-    grid-row: 2/3;
-    background-color: rgb(238,103,92);
-    margin-bottom: 10px;
-    clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
-    height: 50px;
-    border-radius: 30px;
+#roundCount {
+  font-size: 30px;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  grid-column: 1 / 2;
+  grid-row: 2/3;
+  background-color: rgb(238, 103, 92);
+  margin-bottom: 10px;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+  height: 50px;
+  border-radius: 30px;
 }
-.buttons{
-    /* height: 40px; */
-    font-family: 'Montserrat Alternates', sans-serif;
+.buttons {
+  /* height: 40px; */
+  font-family: "Montserrat Alternates", sans-serif;
 }
-#newLocation{
-    width: 50px;
-    margin-right: 10px;
-    margin-left: 10px;
+#newLocation {
+  width: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
-.links{
-    margin: 4px 4px 4px 4px;
-    border: none;
+.links {
+  margin: 4px 4px 4px 4px;
+  border: none;
 }
-#mapContainer{
-    background-color: rgba(red, green, rgba(0, 0, 255, 0), 0);
+#mapContainer {
+  background-color: rgba(red, green, rgba(0, 0, 255, 0), 0);
+}
+#theme {
+  margin-top: 100px;
 }
 @media only screen and (max-width: 590px) {
-    #deleteBtn{
-        display:none;
-    }
+  #deleteBtn {
+    display: none;
+  }
 }
 @media only screen and (max-width: 840px) {
-    #mapControls{
-        justify-content: space-around;
-    }
-    #yourScore{
-        display: none;
-    }
-    h1{
-        display: none;
-    }
-    #results{
-    }
+  #mapControls {
+    justify-content: space-around;
+  }
+  #yourScore {
+    display: none;
+  }
+  h1 {
+    display: none;
+  }
+  #results {
+  }
 }
 @media only screen and (max-width: 425px) {
-    #mapControls{
-        justify-content: space-around;
-    }
-    #yourScore{
-        display: none;
-    }
-    grid{
-        display:block;
-    }
-    #streetView{
-       height: 50vh;
-    }
-    #map1{
-        margin-top: 4px;
-        height: 20vh;
-    }
-    h1{
-        display: none;
-    }
-    #newLocation{
-        padding: 2px;
-        width: 70px;
-       
-    }
-    #mapControls{
-        height: 20px;
-        margin-bottom: 2px;
-    }
-    #roundCount{
-        height: 20px;
-        font-size: 20px;
-        margin-bottom: 2px;
-    }
-    #newLocation{
-        margin-right: 10px;
-        margin-bottom: 5px;
-        height: 30px;
-        width:70vw;
-        border-radius: 10px;
-        border-width: 0;
-        font-size: 17px;
-        background-color: rgb(127, 167, 138);
-    }
-    #newLocation:hover{
-        background-color: rgb(50, 64, 54);
-    }
-    #results{
-        margin: 5px;
-        display: flex;
-    }
-    #latlng{
-        margin-top: 5px;
-    }
-    #options{
-        width: 15vw;
-    }
+  #mapControls {
+    justify-content: space-around;
+  }
+  #yourScore {
+    display: none;
+  }
+  grid {
+    display: block;
+  }
+  #streetView {
+    height: 50vh;
+  }
+  #map1 {
+    margin-top: 4px;
+    height: 20vh;
+  }
+  h1 {
+    display: none;
+  }
+  #newLocation {
+    padding: 2px;
+    width: 70px;
+  }
+  #mapControls {
+    height: 20px;
+    margin-bottom: 2px;
+  }
+  #roundCount {
+    height: 20px;
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
+  #newLocation {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 70vw;
+    border-radius: 10px;
+    border-width: 0;
+    font-size: 17px;
+    background-color: rgb(127, 167, 138);
+  }
+  #newLocation:hover {
+    background-color: rgb(50, 64, 54);
+  }
+  #results {
+    margin: 5px;
+    display: flex;
+  }
+  #latlng {
+    margin-top: 5px;
+  }
+  #options {
+    width: 15vw;
+  }
 }

@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Map Game</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="style.css" />
     <script
@@ -20,34 +23,42 @@
     <h1>Find the location on the map</h1>
     <grid>
       <div id="mapControls">
-      <button class="buttons"id="deleteBtn">Delete Marker</button>
-      <p id="yourScore">your score: </p>
-      <p id="score"> </p>
+        <button class="buttons" id="deleteBtn">Delete Marker</button>
+        <p id="yourScore">your score:</p>
+        <p id="score"></p>
       </div>
-      <div id ="roundCount">
-        <p>Round </p>
+      <div id="roundCount">
+        <p>Round</p>
         <p id="count">1</p>
       </div>
-        <div class="maps" id="streetView"></div>
-        <div class="maps" id="map1"></div>
+      <div class="maps" id="streetView"></div>
+      <div class="maps" id="map1"></div>
       <div id="results">
         <p id="resultsText"></p>
         <p id="latlng"></p>
       </div>
-      
+
       <div id="options">
-        <div id="city">
-        <button class="buttons" id="cityChange">City</button>
-        <div class="dropdown-content">
-          <button class="cityLinks" id="newYork" >New York</button>
-          <button class="cityLinks" id="grandRapids">Grand Rapids</button>
-          <button class="cityLinks">LA</button>
+        <div class="dropdown-container" id="city">
+          <button class="dropdown-buttons" class="buttons">City</button>
+          <div class="dropdown-content">
+            <button class="links" id="newYork">New York</button>
+            <button class="links" id="grandRapids">Grand Rapids</button>
+            <button class="links">LA</button>
+          </div>
         </div>
+        <div class="dropdown-container" id="theme">
+          <button class="dropdown-buttons" class="buttons">Theme</button>
+          <div class="dropdown-content">
+            <button class="links" id="darkMode">Dark Mode</button>
+            <button class="links" id="lightMode">Light Mode</button>
+            <button class="links">Custom</button>
+          </div>
         </div>
       </div>
 
       <div id="streetViewButtons">
-            <!-- <input type="checkbox"id="mapView"name="Map View">
+        <!-- <input type="checkbox"id="mapView"name="Map View">
             <label for="mapView">Map View</label> -->
       </div>
     </grid>

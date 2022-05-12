@@ -1,101 +1,108 @@
-const flag = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+const flag =
+  "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 //storing answers and locations
-let myStyles = {nightMode: [
-  { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-  { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-  { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-  {
-    featureType: "administrative.locality",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#d59563" }],
-  },
-  {
-    featureType: "poi",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#d59563" }],
-  },
-  {
-    featureType: "poi.park",
-    elementType: "geometry",
-    stylers: [{ color: "#263c3f" }],
-  },
-  {
-    featureType: "poi.park",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#6b9a76" }],
-  },
-  {
-    featureType: "road",
-    elementType: "geometry",
-    stylers: [{ color: "#38414e" }],
-  },
-  {
-    featureType: "road",
-    elementType: "geometry.stroke",
-    stylers: [{ color: "#212a37" }],
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#9ca5b3" }],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "geometry",
-    stylers: [{ color: "#746855" }],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "geometry.stroke",
-    stylers: [{ color: "#1f2835" }],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#f3d19c" }],
-  },
-  {
-    featureType: "transit",
-    elementType: "geometry",
-    stylers: [{ color: "#2f3948" }],
-  },
-  {
-    featureType: "transit.station",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#d59563" }],
-  },
-  {
-    featureType: "water",
-    elementType: "geometry",
-    stylers: [{ color: "#17263c" }],
-  },
-  {
-    featureType: "water",
-    elementType: "labels.text.fill",
-    stylers: [{ color: "#515c6d" }],
-  },
-  {
-    featureType: "water",
-    elementType: "labels.text.stroke",
-    stylers: [{ color: "#17263c" }],
-  },
-],}
+let myStyles = {
+  nightMode: [
+    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+    {
+      featureType: "administrative.locality",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#d59563" }],
+    },
+    {
+      featureType: "poi",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#d59563" }],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "geometry",
+      stylers: [{ color: "#263c3f" }],
+    },
+    {
+      featureType: "poi.park",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#6b9a76" }],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [{ color: "#38414e" }],
+    },
+    {
+      featureType: "road",
+      elementType: "geometry.stroke",
+      stylers: [{ color: "#212a37" }],
+    },
+    {
+      featureType: "road",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#9ca5b3" }],
+    },
+    {
+      featureType: "road.highway",
+      elementType: "geometry",
+      stylers: [{ color: "#746855" }],
+    },
+    {
+      featureType: "road.highway",
+      elementType: "geometry.stroke",
+      stylers: [{ color: "#1f2835" }],
+    },
+    {
+      featureType: "road.highway",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#f3d19c" }],
+    },
+    {
+      featureType: "transit",
+      elementType: "geometry",
+      stylers: [{ color: "#2f3948" }],
+    },
+    {
+      featureType: "transit.station",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#d59563" }],
+    },
+    {
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [{ color: "#17263c" }],
+    },
+    {
+      featureType: "water",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#515c6d" }],
+    },
+    {
+      featureType: "water",
+      elementType: "labels.text.stroke",
+      stylers: [{ color: "#17263c" }],
+    },
+  ],
+  default: [],
+};
 let markers = [];
 let answer = [];
 let randomLocations = [];
 const allScores = [];
-localStorage.setItem('clicks', 0);
+localStorage.setItem("clicks", 0);
 let currentCity = null;
 let currentRound = 1;
-const $count = $('#count');
+const $count = $("#count");
 $count.text(`${currentRound}`);
 //JQuery DOM element references
-const $newYorkButton = $('#newYork');
-const $grButton = $('#grandRapids');
-const $score = $('#score');
-const $roundCount = $('#roundCount');
-const $tryAgainButton = $('<button class="buttons" id="newLocation"></button>').text('Try Again')
-const $resultsDiv = $('#results');
+const $darkModeButton = $("#darkMode");
+const $newYorkButton = $("#newYork");
+const $grButton = $("#grandRapids");
+const $score = $("#score");
+const $roundCount = $("#roundCount");
+const $tryAgainButton = $(
+  '<button class="buttons" id="newLocation"></button>'
+).text("Try Again");
+const $resultsDiv = $("#results");
 const $results = $("#latlng");
 const $deleteButton = $("#deleteBtn");
 const $newLocationButton = $("#newLocation");
@@ -116,14 +123,16 @@ $.ajax({ url: googleUrl, dataType: "jsonp" }).then(function () {
 const brooklyn = { lat: 40.650002, lng: -73.949997 };
 const gr = { lat: [43, 42.94], lng: [-85.68, -85.61] };
 const timesSquare = { lat: 40.758, lng: -73.9855 };
-const newYork = {lat: [40.77, 40.61], lng: [-74, -73.89]};
+const newYork = { lat: [40.77, 40.61], lng: [-74, -73.89] };
 function getRandomLocation(city) {
   //Right now it's set up to only give you locations in
   //Brooklyn Queens and Manhattan
   randomLocations = [];
-  let randomLat = (Math.random() * (city.lat[0] - city.lat[1]) + city.lat[1]).toFixed(6) * 1;
-  let randomLong = (Math.random() * (city.lng[0] - city.lng[1]) + city.lng[1]).toFixed(6) * 1;
-  
+  let randomLat =
+    (Math.random() * (city.lat[0] - city.lat[1]) + city.lat[1]).toFixed(6) * 1;
+  let randomLong =
+    (Math.random() * (city.lng[0] - city.lng[1]) + city.lng[1]).toFixed(6) * 1;
+
   //newyork below
   // let randomLat = (Math.random() * (40.75 - 40.59) + 40.59).toFixed(6) * 1;
   // let randomLong = (Math.random() * (-74 - -73.89) + -73.89).toFixed(6) * 1;
@@ -139,22 +148,26 @@ $deleteButton.on("click", function () {
 createButton();
 
 //CITY CHANGE BUTTONS...................................
-$newYorkButton.on('click',function(){
+$newYorkButton.on("click", function () {
   initMaps(newYork);
-})
+});
 
-$grButton.on('click', function(){
+$grButton.on("click", function () {
   initMaps(gr);
 });
 
-
+//THEME CHANGE BUTTONS..................................
+$darkModeButton.on("click", function () {
+  initMaps(currentCity, myStyles.nightMode);
+  console.log("clicked");
+});
 
 //parameters for map are coordinates (in the form of an object)
-function initMaps(location) {
+function initMaps(location, mapTheme) {
   //MAP 1......STREET VIEW................................
   getRandomLocation(location);
   currentCity = location;
-  $('#streetView').hide().fadeIn(1800);
+  $("#streetView").hide().fadeIn(1800);
   $("#map1").hide().fadeIn(2500);
   //map instantiation passing in DOM location and the actual *location*
   const map0 = new google.maps.Map($streetView, {
@@ -163,11 +176,11 @@ function initMaps(location) {
     disableDefaultUI: true,
     zoomControl: false,
   });
-  
+
   addMarker(randomLocations[0], map0, "secret location", answer, false);
   //for some reason I can't get the variables out of this array item
   //as of right now I'm needing to store them in a new one in order to get
-  //the coordinates to print out the way I want them to 
+  //the coordinates to print out the way I want them to
   answerLocation = answer[0];
   theAnswer = answerLocation.getPosition().toString();
   //console.log(theAnswer)
@@ -197,7 +210,7 @@ function initMaps(location) {
   const map1 = new google.maps.Map($mapBox1, {
     center: map0.center,
     zoom: 12,
-    styles: myStyles.nightMode,
+    styles: mapTheme,
   });
   //adds a listener to the map for user creating markers
   map1.addListener("click", function (e) {
@@ -206,9 +219,16 @@ function initMaps(location) {
     //adds your marker
     let answerReveal = addMarker(e.latLng, map1, "Your Answer", markers, true);
     //adds marker identical to streetview location to your map
-    let yourMarker = addMarker(randomLocations[0], map1, "secret location", answer, false, flag);
-    //turns your marker into an object literal containing your latlng 
-    //coordinates and turns those to a string to display them 
+    let yourMarker = addMarker(
+      randomLocations[0],
+      map1,
+      "secret location",
+      answer,
+      false,
+      flag
+    );
+    //turns your marker into an object literal containing your latlng
+    //coordinates and turns those to a string to display them
     //(I don't know why its the only way)
     const userChoice = markers[0].getPosition().toString();
     convertStrings(userChoice);
@@ -227,7 +247,7 @@ function addMarker(latLng, map, title, array, draggableChoice, icon) {
     map: map,
     draggable: draggableChoice,
     title: `${title}`,
-    icon: icon
+    icon: icon,
   });
   if (marker != undefined) {
     array.push(marker);
@@ -276,32 +296,27 @@ function displayResults(distance) {
   $results.text(
     `Your guess was ${distance.toFixed(4)} miles away from the answer`
   );
-  $results.css('display', 'flex')
+  $results.css("display", "flex");
   let finalScore = 0;
   allScores.unshift(distance);
-  allScores.forEach(function(score){
+  allScores.forEach(function (score) {
     finalScore += score;
-  })
+  });
   //console.log(finalScore);
-  $score.text(`${finalScore.toFixed(4)}`)
+  $score.text(`${finalScore.toFixed(4)}`);
   //createButton();
-  
 }
 
+function createButton() {
+  //New Location
 
-function createButton(){
-//New Location
-
-$resultsDiv.append($tryAgainButton);
-$tryAgainButton.on("click", function () {
-   answer = [];
-  initMaps(currentCity);
-  $count.text(`${currentRound += 1}`);
-  $('#latlng').fadeOut(700);
-  localStorage.clicks++;
-  console.log(localStorage.clicks);
-});
-
+  $resultsDiv.append($tryAgainButton);
+  $tryAgainButton.on("click", function () {
+    answer = [];
+    initMaps(currentCity);
+    $count.text(`${(currentRound += 1)}`);
+    $("#latlng").fadeOut(700);
+    localStorage.clicks++;
+    console.log(localStorage.clicks);
+  });
 }
-
-
