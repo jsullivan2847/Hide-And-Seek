@@ -16,7 +16,7 @@ Some images of the game in action below
 
 <img alt="Browser View" src="https://user-images.githubusercontent.com/102931033/168198287-cc878580-4c2c-4132-a6a6-65385e7a3eed.jpg" width="500"/> <img alt="Mobile View" src="https://user-images.githubusercontent.com/102931033/168198317-928ef5e3-6736-4fb8-b37d-fe7e4c5db4fe.jpg" width="200"/>
  
-
-
-	![alt text](.jpg)
-
+ 
+ 
+ 
+ click [here](https://jsullivan2847.github.io/CUSTOM-MAPS/) to test it out for yourself!
