@@ -12,7 +12,12 @@ the map at will.
 - CSS
 - Google Maps API
 
-![](https://user-images.githubusercontent.com/102931033/168197737-03789b98-e28d-406e-b370-f6df4430fade.jpg)
+Some images of the game in action below
+
+ 
+![Browser View](https://user-images.githubusercontent.com/102931033/168198287-cc878580-4c2c-4132-a6a6-65385e7a3eed.jpg)
+![Mobile View](https://user-images.githubusercontent.com/102931033/168198317-928ef5e3-6736-4fb8-b37d-fe7e4c5db4fe.jpg)
+
 
 	![alt text](.jpg)
 
