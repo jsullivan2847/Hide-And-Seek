@@ -19,12 +19,13 @@ Some images of the game in action below
  
  # Getting Started
  
- click [here](https://jsullivan2847.github.io/CUSTOM-MAPS/) to test it out for yourself!
+ click [here](https://jsullivan2847.github.io/Hide-And-Seek/) to test it out for yourself!
  
  # Future Improvements
  
  - Custom (maybe even user made?) themes
- - More Locations to choose from 
+ - More locations to choose from 
  - Max amount of rounds
- - Local Storage high scores
- - More Complex point system
+ - Local storage high scores
+ - More complex point system
+ - Landing page with rules
