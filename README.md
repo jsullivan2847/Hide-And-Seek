@@ -19,7 +19,7 @@ Some images of the game in action below
  
  # Getting Started
  
- click [here](https://jsullivan2847.github.io/CUSTOM-MAPS/) to test it out for yourself!
+ click [here](https://jsullivan2847.github.io/Hide-And-Seek/) to test it out for yourself!
  
  # Future Improvements
  
