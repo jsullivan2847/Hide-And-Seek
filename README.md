@@ -14,10 +14,8 @@ the map at will.
 
 Some images of the game in action below
 
-<img src="https://user-images.githubusercontent.com/102931033/168198287-cc878580-4c2c-4132-a6a6-65385e7a3eed.jpg" alt="test" width="200"/>
+<img alt="Browser View" src="https://user-images.githubusercontent.com/102931033/168198287-cc878580-4c2c-4132-a6a6-65385e7a3eed.jpg" width="500"/> <img alt="Mobile View" src="https://user-images.githubusercontent.com/102931033/168198317-928ef5e3-6736-4fb8-b37d-fe7e4c5db4fe.jpg" width="500"/>
  
-![Browser View](https://user-images.githubusercontent.com/102931033/168198287-cc878580-4c2c-4132-a6a6-65385e7a3eed.jpg)
-![Mobile View](https://user-images.githubusercontent.com/102931033/168198317-928ef5e3-6736-4fb8-b37d-fe7e4c5db4fe.jpg)
 
 
 	![alt text](.jpg)
