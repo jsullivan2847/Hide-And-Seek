@@ -95,6 +95,7 @@ const $count = $("#count");
 $count.text(`${currentRound}`);
 //JQuery DOM element references
 const $darkModeButton = $("#darkMode");
+const $lightModeButton = $("#lightMode");
 const $newYorkButton = $("#newYork");
 const $grButton = $("#grandRapids");
 const $score = $("#score");
@@ -125,17 +126,11 @@ const gr = { lat: [43, 42.94], lng: [-85.68, -85.61] };
 const timesSquare = { lat: 40.758, lng: -73.9855 };
 const newYork = { lat: [40.77, 40.61], lng: [-74, -73.89] };
 function getRandomLocation(city) {
-  //Right now it's set up to only give you locations in
-  //Brooklyn Queens and Manhattan
   randomLocations = [];
   let randomLat =
     (Math.random() * (city.lat[0] - city.lat[1]) + city.lat[1]).toFixed(6) * 1;
   let randomLong =
     (Math.random() * (city.lng[0] - city.lng[1]) + city.lng[1]).toFixed(6) * 1;
-
-  //newyork below
-  // let randomLat = (Math.random() * (40.75 - 40.59) + 40.59).toFixed(6) * 1;
-  // let randomLong = (Math.random() * (-74 - -73.89) + -73.89).toFixed(6) * 1;
   randomLocation = { lat: randomLat, lng: randomLong };
   randomLocations.push(randomLocation);
 }
@@ -159,7 +154,9 @@ $grButton.on("click", function () {
 //THEME CHANGE BUTTONS..................................
 $darkModeButton.on("click", function () {
   initMaps(currentCity, myStyles.nightMode);
-  console.log("clicked");
+});
+$lightModeButton.on("click", function () {
+  initMaps(currentCity, myStyles.default);
 });
 
 //parameters for map are coordinates (in the form of an object)
@@ -168,7 +165,7 @@ function initMaps(location, mapTheme) {
   getRandomLocation(location);
   currentCity = location;
   $("#streetView").hide().fadeIn(1800);
-  $("#map1").hide().fadeIn(2500);
+  $("#map1").hide().fadeIn(1800);
   //map instantiation passing in DOM location and the actual *location*
   const map0 = new google.maps.Map($streetView, {
     center: randomLocations[0],
@@ -183,7 +180,6 @@ function initMaps(location, mapTheme) {
   //the coordinates to print out the way I want them to
   answerLocation = answer[0];
   theAnswer = answerLocation.getPosition().toString();
-  //console.log(theAnswer)
 
   //instantiates streetview settings
   const streetView = new google.maps.StreetViewPanorama($streetView, {
@@ -195,15 +191,6 @@ function initMaps(location, mapTheme) {
   });
   // sets the map to streetview
   map0.getStreetView(streetView);
-
-  //Change Map View BUTTON
-  // $mapView.change(function () {
-  //   if (this.checked) {
-  //     streetView.setVisible(false);
-  //   } else if (!this.checked) {
-  //     streetView.setVisible(true);
-  //   }
-  // });
 
   //MAP 2...............................................
   //instantiate map on the right
@@ -232,7 +219,6 @@ function initMaps(location, mapTheme) {
     //(I don't know why its the only way)
     const userChoice = markers[0].getPosition().toString();
     convertStrings(userChoice);
-    //console.log(points);
     //displays results * 69.2 the amount of miles between latitude coordinates
     displayResults(points * 69.2);
   });
@@ -302,14 +288,10 @@ function displayResults(distance) {
   allScores.forEach(function (score) {
     finalScore += score;
   });
-  //console.log(finalScore);
   $score.text(`${finalScore.toFixed(4)}`);
-  //createButton();
 }
 
 function createButton() {
-  //New Location
-
   $resultsDiv.append($tryAgainButton);
   $tryAgainButton.on("click", function () {
     answer = [];
