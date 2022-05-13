@@ -5,7 +5,7 @@ and on another map has to make their best guess at where it is. For each choice 
 The user can change the location parameters of the game, at the moment two cities (New York, NY and Grand Rapids, MI), and change the color theme of 
 the map at will. 
 
-Technologies Used
+**Technologies Used**
 - JavaScript
 - Jquery
 - HTML
